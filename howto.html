@@ -41,7 +41,9 @@
   <ul>
 <li><a class="reference internal" href="#">How to doing Tricks</a><ul>
 <li><a class="reference internal" href="#hello-world-base-page-api">Hello World base page &amp; API</a></li>
+<li><a class="reference internal" href="#specified-key-was-too-long-error">Specified key was too long error</a></li>
 <li><a class="reference internal" href="#basic-auth-laravel">Basic Auth Laravel</a></li>
+<li><a class="reference internal" href="#penggunaan-auth-pada-controller">Penggunaan Auth pada Controller</a></li>
 </ul>
 </li>
 </ul>
@@ -130,6 +132,22 @@ echo &quot;Hello world&quot;;
 </pre></div>
 </div>
 <p>Setelah kita menambahkan baris yg ada diatas, mari kita test dengan mengakses link <strong>http://127.0.0.1:8000/api/hello</strong> , berbeda dengan halaman page API hanya bisa diakses dari endpoint api/{route_api} . API akan digunakan pada section lebih lanjut.</p>
+</div>
+<div class="section" id="specified-key-was-too-long-error">
+<h2>Specified key was too long error<a class="headerlink" href="#specified-key-was-too-long-error" title="Link permanen untuk headline ini">¶</a></h2>
+<p>Error berikut adalah error dimana akan melakukan migrasi table dan attribut table melebihi dari batasan MySQL yang ada. Error ini dapat diatasi dengan cara mengupdate file <strong>app/Providers/AppServiceProvider.php</strong>.</p>
+<p>Baris kode berikut:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">use</span> <span class="n">Illuminate</span>\<span class="n">Support</span>\<span class="n">Facades</span>\<span class="n">Schema</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Ditambahkan pada <strong>AppServiceProvider.php</strong> setelah baris <strong>namespace AppProviders;</strong>.</p>
+<p>Dan baris kode berikut ditambahkan pada fungsi boot():</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">function</span> <span class="n">boot</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Schema</span><span class="p">::</span><span class="n">defaultStringLength</span><span class="p">(</span><span class="mi">191</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="basic-auth-laravel">
 <h2>Basic Auth Laravel<a class="headerlink" href="#basic-auth-laravel" title="Link permanen untuk headline ini">¶</a></h2>
@@ -271,6 +289,15 @@ protected $redirectTo = &#39;/dashboard&#39;;
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">Model User dapat disesuaikan juga terdapat level / role dari user ketika melakukan registrasi atau login.</p>
+</div>
+</div>
+<div class="section" id="penggunaan-auth-pada-controller">
+<h2>Penggunaan Auth pada Controller<a class="headerlink" href="#penggunaan-auth-pada-controller" title="Link permanen untuk headline ini">¶</a></h2>
+<p>Penggunaan auth dapat digunakan pada controller manapun jika membutuhkan data user yang telah login. Berikut contoh2 penggunaan auth user pada beberapa kasus:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#. Check apakah user sudah login atau belum / Check auth user?</span>
+<span class="c1">#. Pengambilan data user yang telah login / Get user auth data?</span>
+<span class="c1">#. Pada **routes/web.php** bisa ditambahkan ke routes yang ada jika syarat dari routes adalah user yang telah login saja.</span>
+</pre></div>
 </div>
 </div>
 </div>

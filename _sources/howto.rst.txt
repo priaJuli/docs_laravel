@@ -65,6 +65,25 @@ Nah sekarang kita akan coba membuat API simple dengan methode GET untuk menampil
 
 Setelah kita menambahkan baris yg ada diatas, mari kita test dengan mengakses link **http://127.0.0.1:8000/api/hello** , berbeda dengan halaman page API hanya bisa diakses dari endpoint api/{route_api} . API akan digunakan pada section lebih lanjut.
 
+================================
+Specified key was too long error
+================================
+
+Error berikut adalah error dimana akan melakukan migrasi table dan attribut table melebihi dari batasan MySQL yang ada. Error ini dapat diatasi dengan cara mengupdate file **app/Providers/AppServiceProvider.php**. 
+
+Baris kode berikut::
+
+	use Illuminate\Support\Facades\Schema;
+
+Ditambahkan pada **AppServiceProvider.php** setelah baris **namespace App\Providers;**.
+
+Dan baris kode berikut ditambahkan pada fungsi boot()::
+
+	public function boot()
+	{
+	    Schema::defaultStringLength(191);
+	}
+
 =========================
 Basic Auth Laravel
 =========================
@@ -214,3 +233,13 @@ Perubahan struktur model user dilakukan dengan tahapan::
 #. Merubah struktur model user, pada file **app/User.php** pada bagian fillable, dan hidden sesuai dengan kebutuhan.
 
 .. tip:: Model User dapat disesuaikan juga terdapat level / role dari user ketika melakukan registrasi atau login.
+
+===============================
+Penggunaan Auth pada Controller
+===============================
+
+Penggunaan auth dapat digunakan pada controller manapun jika membutuhkan data user yang telah login. Berikut contoh2 penggunaan auth user pada beberapa kasus::
+
+#. Check apakah user sudah login atau belum / Check auth user?
+#. Pengambilan data user yang telah login / Get user auth data?
+#. Pada **routes/web.php** bisa ditambahkan ke routes yang ada jika syarat dari routes adalah user yang telah login saja.
