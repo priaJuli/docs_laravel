@@ -95,6 +95,10 @@
 <li>app/Http/Controllers/Auth/RegisterController.php</li>
 <li>app/Http/Controllers/Auth/ResetPasswordController.php</li>
 <li>routes/web.php</li>
+<li>resources/views/auth/login.blade.php</li>
+<li>resources/views/auth/register.blade.php</li>
+<li>resources/views/auth/passwords/email.blade.php</li>
+<li>resources/views/auth/passwords/reset.blade.php</li>
 </ol>
 <p><strong>Forgot Password</strong></p>
 <p>File <strong>app/Http/Controllers/Auth/ForgotPasswordController.php</strong>, controller ini akan menghandle fungsi forgot password dimana akan melakukan reset password pada user.</p>
@@ -208,6 +212,7 @@ protected $redirectTo = &#39;/dashboard&#39;;
 </pre></div>
 </div>
 <p>Baris kode ini akan otomatis digenerate oleh laravel setelah menjalankan script di cmd <strong>php artisan make:auth</strong> jadi file <strong>routes/web.php</strong> bisa diabaikan. Sama halnya routes page, routes untuk api juga akan digenerate otomatis tetapi harus di modifikasi sesuai dengan kebutuhan sistem.</p>
+<p>Kebutuhan data user dimana ada attribut yang lain yang perlu di tambahkan ketika melakukan registrasi dapat di sesuaikan dengan kebutuhan dengan cara mengupdate model User yang ada pada File <strong>app/User.php</strong>. Dan untuk merubah tampilan login atau registrasi dapat di rubah pada file <strong>resources/views/auth/login.blade.php</strong> dan <strong>resources/views/auth/register.blade.php</strong>.</p>
 </div>
 </div>
 
