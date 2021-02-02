@@ -294,11 +294,38 @@ protected $redirectTo = &#39;/dashboard&#39;;
 <div class="section" id="penggunaan-auth-pada-controller">
 <h2>Penggunaan Auth pada Controller<a class="headerlink" href="#penggunaan-auth-pada-controller" title="Link permanen untuk headline ini">¶</a></h2>
 <p>Penggunaan auth dapat digunakan pada controller manapun jika membutuhkan data user yang telah login. Berikut contoh2 penggunaan auth user pada beberapa kasus:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#. Check apakah user sudah login atau belum / Check auth user?</span>
-<span class="c1">#. Pengambilan data user yang telah login / Get user auth data?</span>
-<span class="c1">#. Pada **routes/web.php** bisa ditambahkan ke routes yang ada jika syarat dari routes adalah user yang telah login saja.</span>
+<ol class="arabic simple">
+<li>Check apakah user sudah login atau belum / Check auth user?</li>
+<li>Pengambilan data user yang telah login / Get user auth data?</li>
+<li>Pada <strong>routes/web.php</strong> bisa ditambahkan ke routes yang ada jika syarat dari routes adalah user yang telah login saja.</li>
+</ol>
+<p>Setiap penggunaan Auth pada controller dapat ditambahkan baris berikut setelah kode <strong>namespace</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">use</span> <span class="n">Illuminate</span>\<span class="n">Support</span>\<span class="n">Facades</span>\<span class="n">Auth</span><span class="p">;</span>
 </pre></div>
 </div>
+<p><strong>Check User Auth</strong></p>
+<p>Pengecheckan apakah user telah login atau tidak dapat dilakukan di fungsi yang terdapat pada controller manapun, berikut baris kode yang perlu ditambahkan:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Check</span> <span class="n">apakah</span> <span class="n">user</span> <span class="n">login</span> <span class="n">atau</span> <span class="n">tidak</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">Auth</span><span class="p">::</span><span class="n">check</span><span class="p">())</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">User</span> <span class="n">login</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Get User Auth Data</strong></p>
+<p>Pengambilan data user dapat dilakukan dengan cara:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>use Illuminate\Support\Facades\Auth;
+
+// Get the currently authenticated user...
+$user = Auth::user();
+</pre></div>
+</div>
+<p>Hasil dari var <strong>$user</strong> adalah bentuk Object dari Model User yang berisi attribut yang ada.</p>
+<p><strong>Guard Routes untuk Auth User</strong></p>
+<p>Pada beberapa routes yang memiliki syarat user yang login saja, dapat dilakukan dengan menambahkan beberapa baris berikut pada baris routes yang sudah dibuat. Berikut contoh:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Route</span><span class="p">::</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">,</span> <span class="s1">&#39;ProfileController@getProfile&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">middleware</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Dengan menambahkan kode <strong>-&gt;middleware('auth');</strong> pada routes yang sudah dibuat, akan membuat syarat user login pada routes yang di set. Pada contoh diatas, halaman <a class="reference external" href="http://127.0.0.1:8000/profile">http://127.0.0.1:8000/profile</a> hanya dapat diakses oleh user yang telah login saja.</p>
 </div>
 </div>
 

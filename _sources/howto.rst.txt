@@ -238,8 +238,40 @@ Perubahan struktur model user dilakukan dengan tahapan::
 Penggunaan Auth pada Controller
 ===============================
 
-Penggunaan auth dapat digunakan pada controller manapun jika membutuhkan data user yang telah login. Berikut contoh2 penggunaan auth user pada beberapa kasus::
+Penggunaan auth dapat digunakan pada controller manapun jika membutuhkan data user yang telah login. Berikut contoh2 penggunaan auth user pada beberapa kasus:
 
 #. Check apakah user sudah login atau belum / Check auth user?
 #. Pengambilan data user yang telah login / Get user auth data?
 #. Pada **routes/web.php** bisa ditambahkan ke routes yang ada jika syarat dari routes adalah user yang telah login saja.
+
+Setiap penggunaan Auth pada controller dapat ditambahkan baris berikut setelah kode **namespace**::
+
+	use Illuminate\Support\Facades\Auth;
+
+**Check User Auth**
+
+Pengecheckan apakah user telah login atau tidak dapat dilakukan di fungsi yang terdapat pada controller manapun, berikut baris kode yang perlu ditambahkan::
+
+	// Check apakah user login atau tidak
+	if (Auth::check()) {
+	    // User login
+	}
+
+**Get User Auth Data**
+
+Pengambilan data user dapat dilakukan dengan cara::
+
+	use Illuminate\Support\Facades\Auth;
+
+	// Get the currently authenticated user...
+	$user = Auth::user();
+
+Hasil dari var **$user** adalah bentuk Object dari Model User yang berisi attribut yang ada.
+
+**Guard Routes untuk Auth User**
+
+Pada beberapa routes yang memiliki syarat user yang login saja, dapat dilakukan dengan menambahkan beberapa baris berikut pada baris routes yang sudah dibuat. Berikut contoh::
+
+	Route::get('profile', 'ProfileController@getProfile')->middleware('auth');
+
+Dengan menambahkan kode **->middleware('auth');** pada routes yang sudah dibuat, akan membuat syarat user login pada routes yang di set. Pada contoh diatas, halaman http://127.0.0.1:8000/profile hanya dapat diakses oleh user yang telah login saja.
