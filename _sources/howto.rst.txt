@@ -212,3 +212,5 @@ Perubahan struktur model user dilakukan dengan tahapan::
 
 #. Merubah migrations user yang terdapat pada folder **database/migrations/...**.
 #. Merubah struktur model user, pada file **app/User.php** pada bagian fillable, dan hidden sesuai dengan kebutuhan.
+
+.. tip:: Model User dapat disesuaikan juga terdapat level / role dari user ketika melakukan registrasi atau login.
