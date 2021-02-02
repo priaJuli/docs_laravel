@@ -275,3 +275,101 @@ Pada beberapa routes yang memiliki syarat user yang login saja, dapat dilakukan 
 	Route::get('profile', 'ProfileController@getProfile')->middleware('auth');
 
 Dengan menambahkan kode **->middleware('auth');** pada routes yang sudah dibuat, akan membuat syarat user login pada routes yang di set. Pada contoh diatas, halaman http://127.0.0.1:8000/profile hanya dapat diakses oleh user yang telah login saja.
+
+=======================
+Encryption & Decryption
+=======================
+
+Laravel enckripsi menggunakan OpenSSL to provide AES-256 dan AES-128 encryption. 
+
+**Konfig Enkripsi**
+
+Pada File **config/app.php**, pada bagian key, secara default berisi key yang digenerate dari command **php artisan key:generate**. Option ini dapat dirubah dengan nilai static dimana hanya akan digunakan saat melakukan enkripsi, dan dekripsi.
+
+**Encrypt Value**
+
+Enkripsi laravel secara default menggunakan OpenSSL dan **AES-256-CBC** cipher. Berikut contoh cara penggunaan enkripsi::
+
+	<?php
+
+	namespace App\Http\Controllers;
+
+	use App\User;
+	use Illuminate\Http\Request;
+	use App\Http\Controllers\Controller;
+
+	class MessageController extends Controller
+	{
+		public function sentMessage(Request $request)
+		{
+			$messageEncrypt = encrypt($request->message);
+			// Hasil enkripsi 
+
+			$messageDecrypt = decrypt($messageEncrypt);
+			// Dekrisi ulang
+
+		}
+
+	}
+
+	........
+
+Enkripsi juga dapat dilakukan dengan Facade dari laravel **use Illuminate\Support\Facades\Crypt;**, berikut contoh::
+
+	<?php
+
+		namespace App\Http\Controllers;
+
+		use App\User;
+		use Illuminate\Http\Request;
+		use App\Http\Controllers\Controller;
+		use Illuminate\Support\Facades\Crypt;
+
+		class MessageController extends Controller
+		{
+			public function sentMessage(Request $request)
+			{
+				$messageEncrypt = Crypt::encryptString("Pesan String");
+				// Hasil enkripsi 
+
+				$messageDecrypt = Crypt::decryptString($messageEncrypt);
+				// Dekrisi ulang
+
+			}
+
+		}
+
+		........
+
+**Decrypt Value**
+
+Saat melakukan dekripsi value, untuk mencegah terjadinya error, dapat menggunakan try{}catch{} untuk mencegah fungsi tersebut terminated dengan menggunakan Facade **use Illuminate\Contracts\Encryption\DecryptException;**. Berikut contoh::
+
+	<?php
+
+		namespace App\Http\Controllers;
+
+		use App\User;
+		use Illuminate\Http\Request;
+		use App\Http\Controllers\Controller;
+		use Illuminate\Support\Facades\Crypt;
+		use Illuminate\Contracts\Encryption\DecryptException;
+
+		class MessageController extends Controller
+		{
+			public function sentMessage(Request $request)
+			{
+				$messageEncrypt = Crypt::encryptString("Pesan String");
+				// Hasil enkripsi 
+
+				try{
+					$messageDecrypt = Crypt::decryptString($messageEncrypt);
+					// Dekrisi ulang
+				} catch (DecryptException $e) {
+				    echo "Error Dekripsi".$e->getMessage();
+				}
+			}
+
+		}
+
+		........

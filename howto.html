@@ -44,6 +44,7 @@
 <li><a class="reference internal" href="#specified-key-was-too-long-error">Specified key was too long error</a></li>
 <li><a class="reference internal" href="#basic-auth-laravel">Basic Auth Laravel</a></li>
 <li><a class="reference internal" href="#penggunaan-auth-pada-controller">Penggunaan Auth pada Controller</a></li>
+<li><a class="reference internal" href="#encryption-decryption">Encryption &amp; Decryption</a></li>
 </ul>
 </li>
 </ul>
@@ -326,6 +327,98 @@ $user = Auth::user();
 </pre></div>
 </div>
 <p>Dengan menambahkan kode <strong>-&gt;middleware('auth');</strong> pada routes yang sudah dibuat, akan membuat syarat user login pada routes yang di set. Pada contoh diatas, halaman <a class="reference external" href="http://127.0.0.1:8000/profile">http://127.0.0.1:8000/profile</a> hanya dapat diakses oleh user yang telah login saja.</p>
+</div>
+<div class="section" id="encryption-decryption">
+<h2>Encryption &amp; Decryption<a class="headerlink" href="#encryption-decryption" title="Link permanen untuk headline ini">¶</a></h2>
+<p>Laravel enckripsi menggunakan OpenSSL to provide AES-256 dan AES-128 encryption.</p>
+<p><strong>Konfig Enkripsi</strong></p>
+<p>Pada File <strong>config/app.php</strong>, pada bagian key, secara default berisi key yang digenerate dari command <strong>php artisan key:generate</strong>. Option ini dapat dirubah dengan nilai static dimana hanya akan digunakan saat melakukan enkripsi, dan dekripsi.</p>
+<p><strong>Encrypt Value</strong></p>
+<p>Enkripsi laravel secara default menggunakan OpenSSL dan <strong>AES-256-CBC</strong> cipher. Berikut contoh cara penggunaan enkripsi:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?php
+
+namespace App\Http\Controllers;
+
+use App\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class MessageController extends Controller
+{
+        public function sentMessage(Request $request)
+        {
+                $messageEncrypt = encrypt($request-&gt;message);
+                // Hasil enkripsi
+
+                $messageDecrypt = decrypt($messageEncrypt);
+                // Dekrisi ulang
+
+        }
+
+}
+
+........
+</pre></div>
+</div>
+<p>Enkripsi juga dapat dilakukan dengan Facade dari laravel <strong>use IlluminateSupportFacadesCrypt;</strong>, berikut contoh:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?php
+
+        namespace App\Http\Controllers;
+
+        use App\User;
+        use Illuminate\Http\Request;
+        use App\Http\Controllers\Controller;
+        use Illuminate\Support\Facades\Crypt;
+
+        class MessageController extends Controller
+        {
+                public function sentMessage(Request $request)
+                {
+                        $messageEncrypt = Crypt::encryptString(&quot;Pesan String&quot;);
+                        // Hasil enkripsi
+
+                        $messageDecrypt = Crypt::decryptString($messageEncrypt);
+                        // Dekrisi ulang
+
+                }
+
+        }
+
+        ........
+</pre></div>
+</div>
+<p><strong>Decrypt Value</strong></p>
+<p>Saat melakukan dekripsi value, untuk mencegah terjadinya error, dapat menggunakan try{}catch{} untuk mencegah fungsi tersebut terminated dengan menggunakan Facade <strong>use IlluminateContractsEncryptionDecryptException;</strong>. Berikut contoh:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?php
+
+        namespace App\Http\Controllers;
+
+        use App\User;
+        use Illuminate\Http\Request;
+        use App\Http\Controllers\Controller;
+        use Illuminate\Support\Facades\Crypt;
+        use Illuminate\Contracts\Encryption\DecryptException;
+
+        class MessageController extends Controller
+        {
+                public function sentMessage(Request $request)
+                {
+                        $messageEncrypt = Crypt::encryptString(&quot;Pesan String&quot;);
+                        // Hasil enkripsi
+
+                        try{
+                                $messageDecrypt = Crypt::decryptString($messageEncrypt);
+                                // Dekrisi ulang
+                        } catch (DecryptException $e) {
+                            echo &quot;Error Dekripsi&quot;.$e-&gt;getMessage();
+                        }
+                }
+
+        }
+
+        ........
+</pre></div>
+</div>
 </div>
 </div>
 
