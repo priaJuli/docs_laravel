@@ -261,7 +261,13 @@ protected $redirectTo = &#39;/dashboard&#39;;
 </pre></div>
 </div>
 <p>Baris kode ini akan otomatis digenerate oleh laravel setelah menjalankan script di cmd <strong>php artisan make:auth</strong> jadi file <strong>routes/web.php</strong> bisa diabaikan. Sama halnya routes page, routes untuk api juga akan digenerate otomatis tetapi harus di modifikasi sesuai dengan kebutuhan sistem.</p>
+<p><strong>Modification Model User</strong></p>
 <p>Kebutuhan data user dimana ada attribut yang lain yang perlu di tambahkan ketika melakukan registrasi dapat di sesuaikan dengan kebutuhan dengan cara mengupdate model User yang ada pada File <strong>app/User.php</strong>. Dan untuk merubah tampilan login atau registrasi dapat di rubah pada file <strong>resources/views/auth/login.blade.php</strong> dan <strong>resources/views/auth/register.blade.php</strong>.</p>
+<p>Perubahan struktur model user dilakukan dengan tahapan:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#. Merubah migrations user yang terdapat pada folder **database/migrations/...**.</span>
+<span class="c1">#. Merubah struktur model user, pada file **app/User.php** pada bagian fillable, dan hidden sesuai dengan kebutuhan.</span>
+</pre></div>
+</div>
 </div>
 </div>
 
