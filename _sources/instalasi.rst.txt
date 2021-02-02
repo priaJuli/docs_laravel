@@ -1,0 +1,76 @@
+
+Instalasi Laravel versi 5.5 standalone
+======================================
+
+.. image:: images/logomarklaravel.min.svg
+
+==================
+Persyaratan Server
+==================
+
+The Laravel framework has a few system requirements. Of course, all of these requirements are satisfied by the Laravel Homestead virtual machine, so it's highly recommended that you use Homestead as your local Laravel development environment.
+
+However, if you are not using Homestead, you will need to make sure your server meets the following requirements:
+
+#. PHP >= 7.0.0
+#. OpenSSL PHP Extension
+#. PDO PHP Extension
+#. Mbstring PHP Extension
+#. Tokenizer PHP Extension
+#. XML PHP Extension
+
+===================
+Installing Laravel
+===================
+
+**Instalasi versi lama dengan Composer**
+
+Perkembangan Laravel sudah mencapai versi 8.* 
+Untuk instalasi versi yang lebih lama, anda dapat menggunakan composer dengan baris kode pada **CMD** seperti berikut::
+
+	$ composer create-project --prefer-dist laravel/laravel blog "5.5.*"
+
+**ENV**
+
+Pada Laravel, ada satu file configurasi yang bernama .env , yang akan menyimpan seluruh config laravel yang akan dipakai, termasuk configurasi database, dll. File .env dapat di buat dengan cara menduplikat file .env.example dan mengganti nama file tersebut menjadi .env . Hal ini merupakan **penting** karena laravel tidak akan berjalan, jika tidak terdapat file .env
+
+**Application Key**
+
+Setelah berhasil instalasi Laravel, cd ke project laravel anda, dan generate application key laravel, key ini merupakan key penting untuk laravel, generate key dapat dilakukan sebagai berikut::
+
+	$ php artisan key:generate
+
+**Local Development Server**
+
+Jika environment sistem anda sudah terpasang PHP, maka anda dapat menjalankan server laravel anda di local, dengan baris kode berikut pada **CMD**::
+
+	$ php artisan serve
+
+**Public directory Alternatif Server**
+
+Akses server lokal laravel juga dapat dilakukan tanpa artisan, secara default akses index / home pada laravel berdasarkan pada directive public/ , dengan cara mengakses localhost anda,
+
+berikut contoh url laravel ::
+
+	http://localhost/laraveltest/public/
+
+=======================
+Optimization Production
+=======================
+
+Untuk mempercepat performance di production, ada beberapa trik yang dapat dilakukan yaitu, dengan melakukan cache pada config laravel, dan cache pada routing laravel. 
+
+Untuk melakukan cache pada config laravel, dapat dilakukan dengan cara::
+
+	$ php artisan config:cache
+
+Agar perubahan configurasi dapat berjalan, dapat dilakukan dengan cara melakukan ulang **php artisan config:cache** atau dengan **php artisan config:clear**
+
+Untuk melakukan cache pada routing laravel, dapat dilakukan dengan cara::
+
+	$ php artisan route:cache
+
+Hal ini berguna, jika project laravel tersebut terdapat banyak route, dengan melakukan cache pada routing, akan mengimprove performance dari laravel. 
+
+Agar perubahan route dapat berjalan, dapat dilakukan dengan cara melakukan melakukan ulang **php artisan route:cache** atau dengan **php artisan route:clear**
+

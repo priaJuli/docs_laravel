@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="id">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to doing Tricks &#8212; dokumentasi laravel 5.5 1.0</title>
+    <link rel="stylesheet" href="_static/caktus.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Indeks" href="genindex.html" />
+    <link rel="search" title="Pencarian" href="search.html" />
+    <link rel="prev" title="Security Laravel" href="security.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigasi</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Indeks Umum"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="security.html" title="Security Laravel"
+             accesskey="P">sebelum</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">dokumentasi laravel 5.5 1.0</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="document">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+<h3>laravel 5.5</h3>
+<p class="tagline">''</p>
+
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How to doing Tricks</a><ul>
+<li><a class="reference internal" href="#hello-world-base-page-api">Hello World base page &amp; API</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Topik sebelum</h4>
+  <p class="topless"><a href="security.html"
+                        title="bab sebelum">Security Laravel</a></p>
+  <div role="note" aria-label="source link">
+    <h3>Halaman Ini</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/howto.rst.txt"
+            rel="nofollow">Lihat Sumber</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Pencarian cepat</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+        <div class="documentwrapper">
+            <div class="bodywrapper">
+                <div class="body">
+                    
+  <div class="section" id="how-to-doing-tricks">
+<h1>How to doing Tricks<a class="headerlink" href="#how-to-doing-tricks" title="Link permanen untuk headline ini">¶</a></h1>
+<img alt="_images/logomarklaravel.min.svg" src="_images/logomarklaravel.min.svg" /><p>Section ini, adalah tutorial sederhana &amp; langkah2 yang efisien dalam belajar <strong>everything</strong> tentang laravel. Sebelum memulai, diharapkan sudah menguasai cara instalasi, dan membuat .env dalam project laravel anda.</p>
+<div class="section" id="hello-world-base-page-api">
+<h2>Hello World base page &amp; API<a class="headerlink" href="#hello-world-base-page-api" title="Link permanen untuk headline ini">¶</a></h2>
+<p><strong>Base page Hello World</strong></p>
+<p>Dalam bahasan kali ini, mari kita coba yang paling sederhana yaitu menampilkan Kata Emas dari belajar Developer yaitu &quot;Hello World&quot;.</p>
+<p>Secara simple nya, cukup menambahkan routing pada file routes/web.php seperti contoh berikut:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>File routes/web.php
+
+&lt;?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the &quot;web&quot; middleware group. Now create something great!
+|
+*/
+
+Route::get(&#39;/hello&#39;, function () {
+    echo &quot;Hello world&quot;;
+});
+</pre></div>
+</div>
+<p>Setelah menambahkan baris yang ada diatas, mari kita test dengan mengakses halaman base route <strong>http://localhost/project_laravel/public/test</strong>  atau dengan script shell pada cmd <strong>php artisan serve</strong> dapat diakses pada halaman <strong>http://127.0.0.1:8000/hello</strong> .</p>
+<p>Nah sekarang kita akan coba membuat API simple dengan methode GET untuk menampilkan kata &quot;Hello world&quot;. Sama seperti cara menambahkan pada routes/web.php kali ini baris kode akan ditambahkan pada file routes/api.php seperti contoh berikut:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>File routes/api.php
+
+&lt;?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the &quot;api&quot; middleware group. Enjoy building your API!
+|
+*/
+
+Route::get(&#39;/hello&#39;, function () {
+echo &quot;Hello world&quot;;
+});
+</pre></div>
+</div>
+<p>Setelah kita menambahkan baris yg ada diatas, mari kita test dengan mengakses link <strong>http://127.0.0.1:8000/api/hello</strong> , berbeda dengan halaman page API hanya bisa diakses dari endpoint api/{route_api} . API akan digunakan pada section lebih lanjut.</p>
+</div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigasi</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Indeks Umum"
+             >index</a></li>
+        <li class="right" >
+          <a href="security.html" title="Security Laravel"
+             >sebelum</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">dokumentasi laravel 5.5 1.0</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; <a href="http://www.caktusgroup.com/">Copyright 2021, Malau</a>.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

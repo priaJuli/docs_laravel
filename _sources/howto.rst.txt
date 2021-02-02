@@ -1,0 +1,66 @@
+
+How to doing Tricks
+=====================
+
+.. image:: images/logomarklaravel.min.svg
+
+Section ini, adalah tutorial sederhana & langkah2 yang efisien dalam belajar **everything** tentang laravel. Sebelum memulai, diharapkan sudah menguasai cara instalasi, dan membuat .env dalam project laravel anda.
+
+===========================
+Hello World base page & API
+===========================
+
+**Base page Hello World**
+
+Dalam bahasan kali ini, mari kita coba yang paling sederhana yaitu menampilkan Kata Emas dari belajar Developer yaitu "Hello World".
+
+Secara simple nya, cukup menambahkan routing pada file routes/web.php seperti contoh berikut::
+
+	File routes/web.php
+
+	<?php
+
+	use Illuminate\Support\Facades\Route;
+
+	/*
+	|--------------------------------------------------------------------------
+	| Web Routes
+	|--------------------------------------------------------------------------
+	|
+	| Here is where you can register web routes for your application. These
+	| routes are loaded by the RouteServiceProvider within a group which
+	| contains the "web" middleware group. Now create something great!
+	|
+	*/
+
+	Route::get('/hello', function () {
+	    echo "Hello world";
+	});
+
+Setelah menambahkan baris yang ada diatas, mari kita test dengan mengakses halaman base route **http://localhost/project_laravel/public/test**	atau dengan script shell pada cmd **php artisan serve** dapat diakses pada halaman **http://127.0.0.1:8000/hello** .
+
+Nah sekarang kita akan coba membuat API simple dengan methode GET untuk menampilkan kata "Hello world". Sama seperti cara menambahkan pada routes/web.php kali ini baris kode akan ditambahkan pada file routes/api.php seperti contoh berikut::
+
+	File routes/api.php
+
+	<?php
+
+	use Illuminate\Http\Request;
+	use Illuminate\Support\Facades\Route;
+
+	/*
+	|--------------------------------------------------------------------------
+	| API Routes
+	|--------------------------------------------------------------------------
+	|
+	| Here is where you can register API routes for your application. These
+	| routes are loaded by the RouteServiceProvider within a group which
+	| is assigned the "api" middleware group. Enjoy building your API!
+	|
+	*/
+
+	Route::get('/hello', function () {
+    	echo "Hello world";
+	});
+
+Setelah kita menambahkan baris yg ada diatas, mari kita test dengan mengakses link **http://127.0.0.1:8000/api/hello** , berbeda dengan halaman page API hanya bisa diakses dari endpoint api/{route_api} . API akan digunakan pada section lebih lanjut.

@@ -1,0 +1,29 @@
+.. laravel 5.5 documentation master file, created by
+   sphinx-quickstart on Mon Feb  1 15:11:17 2021.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to laravel 5.5's documentation!
+=======================================
+
+.. image:: images/logomarklaravel.min.svg
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   instalasi
+   arsitekturkonsep
+   basics
+   database
+   eloquentorm
+   frontends
+   security
+   howto   
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

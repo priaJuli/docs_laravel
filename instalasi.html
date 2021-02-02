@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="id">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalasi Laravel versi 5.5 standalone &#8212; dokumentasi laravel 5.5 1.0</title>
+    <link rel="stylesheet" href="_static/caktus.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="index" title="Indeks" href="genindex.html" />
+    <link rel="search" title="Pencarian" href="search.html" />
+    <link rel="next" title="Penggunaan Laravel" href="penggunaan.html" />
+    <link rel="prev" title="Welcome to laravel 5.5&#39;s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigasi</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Indeks Umum"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="penggunaan.html" title="Penggunaan Laravel"
+             accesskey="N">berikut</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to laravel 5.5&#39;s documentation!"
+             accesskey="P">sebelum</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">dokumentasi laravel 5.5 1.0</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="document">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+<h3>laravel 5.5</h3>
+<p class="tagline">''</p>
+
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Instalasi Laravel versi 5.5 standalone</a><ul>
+<li><a class="reference internal" href="#persyaratan-server">Persyaratan Server</a></li>
+<li><a class="reference internal" href="#installing-laravel">Installing Laravel</a></li>
+<li><a class="reference internal" href="#optimization-production">Optimization Production</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Topik sebelum</h4>
+  <p class="topless"><a href="index.html"
+                        title="bab sebelum">Welcome to laravel 5.5's documentation!</a></p>
+  <h4>Topik berikutnya</h4>
+  <p class="topless"><a href="penggunaan.html"
+                        title="bab berikutnya">Penggunaan Laravel</a></p>
+  <div role="note" aria-label="source link">
+    <h3>Halaman Ini</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/instalasi.rst.txt"
+            rel="nofollow">Lihat Sumber</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Pencarian cepat</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+        <div class="documentwrapper">
+            <div class="bodywrapper">
+                <div class="body">
+                    
+  <div class="section" id="instalasi-laravel-versi-5-5-standalone">
+<h1>Instalasi Laravel versi 5.5 standalone<a class="headerlink" href="#instalasi-laravel-versi-5-5-standalone" title="Link permanen untuk headline ini">¶</a></h1>
+<img alt="_images/logomarklaravel.min.svg" src="_images/logomarklaravel.min.svg" /><div class="section" id="persyaratan-server">
+<h2>Persyaratan Server<a class="headerlink" href="#persyaratan-server" title="Link permanen untuk headline ini">¶</a></h2>
+<p>The Laravel framework has a few system requirements. Of course, all of these requirements are satisfied by the Laravel Homestead virtual machine, so it's highly recommended that you use Homestead as your local Laravel development environment.</p>
+<p>However, if you are not using Homestead, you will need to make sure your server meets the following requirements:</p>
+<ol class="arabic simple">
+<li>PHP &gt;= 7.0.0</li>
+<li>OpenSSL PHP Extension</li>
+<li>PDO PHP Extension</li>
+<li>Mbstring PHP Extension</li>
+<li>Tokenizer PHP Extension</li>
+<li>XML PHP Extension</li>
+</ol>
+</div>
+<div class="section" id="installing-laravel">
+<h2>Installing Laravel<a class="headerlink" href="#installing-laravel" title="Link permanen untuk headline ini">¶</a></h2>
+<p><strong>Instalasi versi lama dengan Composer</strong></p>
+<p>Perkembangan Laravel sudah mencapai versi 8.*
+Untuk instalasi versi yang lebih lama, anda dapat menggunakan composer dengan baris kode pada <strong>CMD</strong> seperti berikut:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ composer create-project --prefer-dist laravel/laravel blog &quot;5.5.*&quot;
+</pre></div>
+</div>
+<p><strong>ENV</strong></p>
+<p>Pada Laravel, ada satu file configurasi yang bernama .env , yang akan menyimpan seluruh config laravel yang akan dipakai, termasuk configurasi database, dll. File .env dapat di buat dengan cara menduplikat file .env.example dan mengganti nama file tersebut menjadi .env . Hal ini merupakan <strong>penting</strong> karena laravel tidak akan berjalan, jika tidak terdapat file .env</p>
+<p><strong>Application Key</strong></p>
+<p>Setelah berhasil instalasi Laravel, cd ke project laravel anda, dan generate application key laravel, key ini merupakan key penting untuk laravel, generate key dapat dilakukan sebagai berikut:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ php artisan key:generate
+</pre></div>
+</div>
+<p><strong>Local Development Server</strong></p>
+<p>Jika environment sistem anda sudah terpasang PHP, maka anda dapat menjalankan server laravel anda di local, dengan baris kode berikut pada <strong>CMD</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ php artisan serve
+</pre></div>
+</div>
+<p><strong>Public directory Alternatif Server</strong></p>
+<p>Akses server lokal laravel juga dapat dilakukan tanpa artisan, secara default akses index / home pada laravel berdasarkan pada directive public/ , dengan cara mengakses localhost anda,</p>
+<p>berikut contoh url laravel</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="o">/</span><span class="n">laraveltest</span><span class="o">/</span><span class="n">public</span><span class="o">/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="optimization-production">
+<h2>Optimization Production<a class="headerlink" href="#optimization-production" title="Link permanen untuk headline ini">¶</a></h2>
+<p>Untuk mempercepat performance di production, ada beberapa trik yang dapat dilakukan yaitu, dengan melakukan cache pada config laravel, dan cache pada routing laravel.</p>
+<p>Untuk melakukan cache pada config laravel, dapat dilakukan dengan cara:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ php artisan config:cache
+</pre></div>
+</div>
+<p>Agar perubahan configurasi dapat berjalan, dapat dilakukan dengan cara melakukan ulang <strong>php artisan config:cache</strong> atau dengan <strong>php artisan config:clear</strong></p>
+<p>Untuk melakukan cache pada routing laravel, dapat dilakukan dengan cara:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ php artisan route:cache
+</pre></div>
+</div>
+<p>Hal ini berguna, jika project laravel tersebut terdapat banyak route, dengan melakukan cache pada routing, akan mengimprove performance dari laravel.</p>
+<p>Agar perubahan route dapat berjalan, dapat dilakukan dengan cara melakukan melakukan ulang <strong>php artisan route:cache</strong> atau dengan <strong>php artisan route:clear</strong></p>
+</div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigasi</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Indeks Umum"
+             >index</a></li>
+        <li class="right" >
+          <a href="penggunaan.html" title="Penggunaan Laravel"
+             >berikut</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to laravel 5.5&#39;s documentation!"
+             >sebelum</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">dokumentasi laravel 5.5 1.0</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; <a href="http://www.caktusgroup.com/">Copyright 2021, Malau</a>.
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

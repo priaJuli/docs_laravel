@@ -1,0 +1,19 @@
+
+Arsitektur Konsep Laravel
+=========================
+
+.. image:: images/logomarklaravel.min.svg
+
+==============
+Requests
+==============
+
+**Hal Pertama**
+
+Entry point pada laravel adalah file public/index.php. File index.php tidak berisi banyak code, hanya file ini akan menjadi entry point dari laravel itu sendiri.
+
+=====================
+HTTP & Console Kernel
+=====================
+
+ONGOING 
