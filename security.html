@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Indeks" href="genindex.html" />
     <link rel="search" title="Pencarian" href="search.html" />
-    <link rel="next" title="Deep Learning Laravel" href="deepfeature.html" />
+    <link rel="next" title="How to doing Tricks" href="howto.html" />
     <link rel="prev" title="FrontEnd Laravel" href="frontends.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -26,7 +26,7 @@
           <a href="genindex.html" title="Indeks Umum"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="deepfeature.html" title="Deep Learning Laravel"
+          <a href="howto.html" title="How to doing Tricks"
              accesskey="N">berikut</a> |</li>
         <li class="right" >
           <a href="frontends.html" title="FrontEnd Laravel"
@@ -53,8 +53,8 @@
   <p class="topless"><a href="frontends.html"
                         title="bab sebelum">FrontEnd Laravel</a></p>
   <h4>Topik berikutnya</h4>
-  <p class="topless"><a href="deepfeature.html"
-                        title="bab berikutnya">Deep Learning Laravel</a></p>
+  <p class="topless"><a href="howto.html"
+                        title="bab berikutnya">How to doing Tricks</a></p>
   <div role="note" aria-label="source link">
     <h3>Halaman Ini</h3>
     <ul class="this-page-menu">
@@ -84,6 +84,130 @@
 <h1>Security Laravel<a class="headerlink" href="#security-laravel" title="Link permanen untuk headline ini">¶</a></h1>
 <img alt="_images/logomarklaravel.min.svg" src="_images/logomarklaravel.min.svg" /><div class="section" id="authentication">
 <h2>Authentication<a class="headerlink" href="#authentication" title="Link permanen untuk headline ini">¶</a></h2>
+<p>Laravel sudah memiliki bantuan untuk membuat fitur login dan signup secara gratis, Laravel basic Auth sudah tersedia otomatis pada Versi 6 dan versi lebih lanjut. Untuk versi 5.5, 5.6, 5.7, 5.8 auth dapat dibuat dengan tahapan awal adalah dengan menjalankan script berikut pada cmd:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ php artisan make:auth
+</pre></div>
+</div>
+<p>Setelah menjalankan script diatas, akan ada beberapa file yang akan digenerate antara lain:</p>
+<ol class="arabic simple">
+<li>app/Http/Controllers/Auth/ForgotPasswordController.php</li>
+<li>app/Http/Controllers/Auth/LoginController.php</li>
+<li>app/Http/Controllers/Auth/RegisterController.php</li>
+<li>app/Http/Controllers/Auth/ResetPasswordController.php</li>
+<li>routes/web.php</li>
+</ol>
+<p><strong>Forgot Password</strong></p>
+<p>File <strong>app/Http/Controllers/Auth/ForgotPasswordController.php</strong>, controller ini akan menghandle fungsi forgot password dimana akan melakukan reset password pada user.</p>
+<p><strong>Basic Login Laravel</strong></p>
+<p>File <strong>app/Http/Controllers/Auth/LoginController.php</strong>, controller ini akan menghandle fungsi login. Secara default, setelah login akan diarahkan ke routes/halaman home (<a class="reference external" href="http://127.0.0.1:8000/home">http://127.0.0.1:8000/home</a>). Aksi redirect ini dapat dirubah dengan mengganti baris kode berikut:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    File LoginController.php
+
+    ........
+
+    class LoginController extends Controller
+    {
+/*
+|--------------------------------------------------------------------------
+| Login Controller
+|--------------------------------------------------------------------------
+|
+| This controller handles authenticating users for the application and
+| redirecting them to your home screen. The controller uses a trait
+| to conveniently provide its functionality to your applications.
+|
+*/
+
+use AuthenticatesUsers;
+
+/**
+ * Where to redirect users after login.
+ *
+ * @var string
+ */
+protected $redirectTo = &#39;/dashboard&#39;;
+// baris ini dapat diganti sesuai routes dashboard yang anda buat.
+
+.........
+</pre></div>
+</div>
+<p><strong>Basic Register Laravel</strong></p>
+<p>File <strong>app/Http/Controllers/Auth/RegisterController.php</strong>, controller ini akan menghandle fungsi register. Secara default, setelah user melakukan registrasi akan diarahkan ke routes/halaman home (<a class="reference external" href="http://127.0.0.1:8000/home">http://127.0.0.1:8000/home</a>). Aksi redirect ini dapat dirubah dengan mengganti baris kode berikut:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    File RegisterController.php
+
+    .............
+
+    class RegisterController extends Controller
+    {
+/*
+|--------------------------------------------------------------------------
+| Register Controller
+|--------------------------------------------------------------------------
+|
+| This controller handles the registration of new users as well as their
+| validation and creation. By default this controller uses a trait to
+| provide this functionality without requiring any additional code.
+|
+*/
+
+use RegistersUsers;
+
+/**
+ * Where to redirect users after registration.
+ *
+ * @var string
+ */
+protected $redirectTo = &#39;/dashboard&#39;;
+
+// baris ini dapat diganti sesuai routes dashboard yang anda buat.
+
+............
+</pre></div>
+</div>
+<p><strong>Reset Password</strong></p>
+<p>File <strong>app/Http/Controllers/Auth/ResetPasswordController.php</strong>, controller ini akan menghandle fungsi reset password. Secara default, setelah user melakukan reset password akan diarahkan ke routes/halaman home (<a class="reference external" href="http://127.0.0.1:8000/home">http://127.0.0.1:8000/home</a>). Aksi redirect ini dapat dirubah dengan mengganti baris kode berikut:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    File ResetPasswordController.php
+
+    .............
+
+    class ResetPasswordController extends Controller
+    {
+/*
+|--------------------------------------------------------------------------
+| Password Reset Controller
+|--------------------------------------------------------------------------
+|
+| This controller is responsible for handling password reset requests
+| and uses a simple trait to include this behavior. You&#39;re free to
+| explore this trait and override any methods you wish to tweak.
+|
+*/
+
+use ResetsPasswords;
+
+/**
+ * Where to redirect users after resetting their password.
+ *
+ * @var string
+ */
+protected $redirectTo = &#39;/dashboard&#39;;
+
+// baris ini dapat diganti sesuai routes dashboard yang anda buat.
+
+............
+</pre></div>
+</div>
+<p><strong>Routing Auth</strong></p>
+<p>File <strong>routes/web.php</strong>, akan otomatis menambahkan baris kode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="n">routes</span><span class="o">/</span><span class="n">web</span><span class="o">.</span><span class="n">php</span>
+
+<span class="o">.........</span>
+
+<span class="n">Auth</span><span class="p">::</span><span class="n">routes</span><span class="p">();</span>
+
+<span class="o">.........</span>
+</pre></div>
+</div>
+<p>Baris kode ini akan otomatis digenerate oleh laravel setelah menjalankan script di cmd <strong>php artisan make:auth</strong> jadi file <strong>routes/web.php</strong> bisa diabaikan. Sama halnya routes page, routes untuk api juga akan digenerate otomatis tetapi harus di modifikasi sesuai dengan kebutuhan sistem.</p>
 </div>
 </div>
 
@@ -100,7 +224,7 @@
           <a href="genindex.html" title="Indeks Umum"
              >index</a></li>
         <li class="right" >
-          <a href="deepfeature.html" title="Deep Learning Laravel"
+          <a href="howto.html" title="How to doing Tricks"
              >berikut</a> |</li>
         <li class="right" >
           <a href="frontends.html" title="FrontEnd Laravel"

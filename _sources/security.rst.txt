@@ -7,3 +7,134 @@ Security Laravel
 =================
 Authentication
 =================
+
+Laravel sudah memiliki bantuan untuk membuat fitur login dan signup secara gratis, Laravel basic Auth sudah tersedia otomatis pada Versi 6 dan versi lebih lanjut. Untuk versi 5.5, 5.6, 5.7, 5.8 auth dapat dibuat dengan tahapan awal adalah dengan menjalankan script berikut pada cmd::
+
+	$ php artisan make:auth
+
+Setelah menjalankan script diatas, akan ada beberapa file yang akan digenerate antara lain:
+
+#. app/Http/Controllers/Auth/ForgotPasswordController.php
+#. app/Http/Controllers/Auth/LoginController.php
+#. app/Http/Controllers/Auth/RegisterController.php
+#. app/Http/Controllers/Auth/ResetPasswordController.php
+#. routes/web.php
+
+**Forgot Password**
+
+File **app/Http/Controllers/Auth/ForgotPasswordController.php**, controller ini akan menghandle fungsi forgot password dimana akan melakukan reset password pada user.
+
+**Basic Login Laravel**
+
+File **app/Http/Controllers/Auth/LoginController.php**, controller ini akan menghandle fungsi login. Secara default, setelah login akan diarahkan ke routes/halaman home (http://127.0.0.1:8000/home). Aksi redirect ini dapat dirubah dengan mengganti baris kode berikut::
+
+	File LoginController.php
+
+	........
+
+	class LoginController extends Controller
+	{
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    use AuthenticatesUsers;
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/dashboard'; 
+    // baris ini dapat diganti sesuai routes dashboard yang anda buat.
+
+    .........
+
+**Basic Register Laravel**
+
+File **app/Http/Controllers/Auth/RegisterController.php**, controller ini akan menghandle fungsi register. Secara default, setelah user melakukan registrasi akan diarahkan ke routes/halaman home (http://127.0.0.1:8000/home). Aksi redirect ini dapat dirubah dengan mengganti baris kode berikut::
+
+	File RegisterController.php
+
+	.............
+
+	class RegisterController extends Controller
+	{
+    /*
+    |--------------------------------------------------------------------------
+    | Register Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
+    |
+    */
+
+    use RegistersUsers;
+
+    /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/dashboard';
+
+    // baris ini dapat diganti sesuai routes dashboard yang anda buat.
+
+    ............
+
+**Reset Password**
+
+File **app/Http/Controllers/Auth/ResetPasswordController.php**, controller ini akan menghandle fungsi reset password. Secara default, setelah user melakukan reset password akan diarahkan ke routes/halaman home (http://127.0.0.1:8000/home). Aksi redirect ini dapat dirubah dengan mengganti baris kode berikut::
+
+	File ResetPasswordController.php
+
+	.............
+
+	class ResetPasswordController extends Controller
+	{
+    /*
+    |--------------------------------------------------------------------------
+    | Password Reset Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller is responsible for handling password reset requests
+    | and uses a simple trait to include this behavior. You're free to
+    | explore this trait and override any methods you wish to tweak.
+    |
+    */
+
+    use ResetsPasswords;
+
+    /**
+     * Where to redirect users after resetting their password.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/dashboard';
+
+    // baris ini dapat diganti sesuai routes dashboard yang anda buat.
+
+    ............
+
+**Routing Auth**
+
+File **routes/web.php**, akan otomatis menambahkan baris kode::
+
+	File routes/web.php
+
+	.........
+
+	Auth::routes();
+
+	.........
+
+Baris kode ini akan otomatis digenerate oleh laravel setelah menjalankan script di cmd **php artisan make:auth** jadi file **routes/web.php** bisa diabaikan. Sama halnya routes page, routes untuk api juga akan digenerate otomatis tetapi harus di modifikasi sesuai dengan kebutuhan sistem.
