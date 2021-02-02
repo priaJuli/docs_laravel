@@ -227,7 +227,7 @@ Baris kode ini akan otomatis digenerate oleh laravel setelah menjalankan script 
 
 Kebutuhan data user dimana ada attribut yang lain yang perlu di tambahkan ketika melakukan registrasi dapat di sesuaikan dengan kebutuhan dengan cara mengupdate model User yang ada pada File **app/User.php**. Dan untuk merubah tampilan login atau registrasi dapat di rubah pada file **resources/views/auth/login.blade.php** dan **resources/views/auth/register.blade.php**.
 
-Perubahan struktur model user dilakukan dengan tahapan::
+Perubahan struktur model user dilakukan dengan tahapan:
 
 #. Merubah migrations user yang terdapat pada folder **database/migrations/...**.
 #. Merubah struktur model user, pada file **app/User.php** pada bagian fillable, dan hidden sesuai dengan kebutuhan.
