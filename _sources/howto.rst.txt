@@ -373,3 +373,9 @@ Saat melakukan dekripsi value, untuk mencegah terjadinya error, dapat menggunaka
 		}
 
 		........
+
+================================
+Laravel Date Using nesbot/carbon
+================================
+
+Laravel menggunakan package dari https://packagist.org/packages/nesbot/carbon sebagai base package untuk generate object datetime. Check pada halaman https://packagist.org/packages/nesbot/carbon syarat php dan extension php yang diwajibkan ada sebelum melakukan instalasi carbon ini. **Carbon** sering digunakan sebagai object Datetime karena kemudahan dan sudah otomatis di integrasikan dengan laravel. Checkout cara penggunaan di halaman http://carbon.nesbot.com/ atau https://packagist.org/packages/nesbot/carbon.
